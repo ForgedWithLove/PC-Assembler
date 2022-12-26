@@ -1,29 +1,35 @@
-<h2>Sign up</h2>
+<div class="content">
+  <header>
+    <img src="/HeaderIcon.png" style="position: absolute; left: 750px;">
+  </header>
+  <div class="rightsidebar"></div>
+  <div class="leftsidebar"></div>
+  <div style="margin-left: 686px; margin-top: 60px; width: 408px; height: 440px; background-color: rgba(365, 365, 365, 0.5); border: 3px solid #263c5b; border-radius: 10px;">
+    <h2 style="margin-top: 20px; text-align: center; font-size: 30px;"><%= t :signing_up %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
+      <div class="field" style="margin-left: 60px; font-size: 22px;">
+        <%= f.label :email, t(:email) %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field" style="margin-left: 60px; margin-top: 10px; font-size: 22px;">
+        <%= f.label :password, t(:pass) %>
+        <% if @minimum_password_length %>
+        <em>(<%= t :min_char %>)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <div class="field" style="margin-left: 60px; margin-top: 10px; font-size: 22px;">
+        <%= f.label :password_confirmation, t(:pass_confirm) %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <div class="actions" style="margin-left: 150px;margin-top: 20px; font-size: 22px;">
+        <%= f.submit t(:sign_up), :style => "height: 30px; width: 100px; font-size: 18px;" %>
+      </div>
+    <% end %>
+    <div style="margin-left: 60px; font-size: 22px; margin-top: 20px;"><%= render "devise/shared/links" %></div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,47 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :gpus %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div style="float: left;">
+		<table class="hardwaretable">
+		  <thead>
+		    <tr>
+		      	<th><%= t :manufact %></th>
+		      	<th><%= t :model %></th>
+		      	<th><%= t :gen %></th>
+				<th><%= t :volume %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @gpus.each do |x| %>
+		      <tr>
+		          <td><%= x.manufact %></td>
+		          <td><%= x.model %></td>
+		          <td><%= x.gen %></td>
+		          <td><%= x.volume %></td>
+		          <td><%= x.price %></td>
+		          <td><%= button_to t(:delete), delete_gpu_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="creationform">
+		<h1 class="formheader"><%= t :add_gpu %></h1>
+		<%= form_with do |form| %>
+			<%= form.label t(:manufact), :class => "formlabel" %></br>
+			<%= form.text_field :manufact, :class => "forminput" %></br>
+			<%= form.label t(:model), :class => "formlabel" %></br>
+			<%= form.text_field :model, :class => "forminput" %></br>
+			<%= form.label t(:gen), :class => "formlabel" %></br>
+			<%= form.text_field :gen, :class => "forminput" %></br>
+			<%= form.label t(:volume), :class => "formlabel" %></br>
+			<%= form.text_field :volume, :class => "forminput" %></br>
+			<%= form.label t(:price), :class => "formlabel" %></br>
+			<%= form.text_field :price, :class => "forminput" %></br>
+			<%= form.submit t(:add), :class => "formsubmit" %></br>
+		<% end %>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:back), manip_hardware_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>

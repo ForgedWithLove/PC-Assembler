@@ -1,0 +1,36 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+  <div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :users %></h1></div>
+  <div class="hardleftsidebar"></div>
+  <div style="float: left;">
+    <table border="1px">
+      <thead>
+        <tr>
+          <th><%= t :email %></th>
+          <th><%= t :encr_pass %></th>
+          <th><%= t :admin %></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tab.each do |x| %>
+          <tr>
+              <td><%= x.email %></td>
+              <td><%= x.encrypted_password %></td>
+              <td><%= t x.admin.to_s %></td>
+              
+              <% if x.admin %>
+                <td><%= button_to t(:edit), edit_user_registration_path(x), method: :get %></td>
+                <td><%= button_to t(:delete), {}, :disabled => true %></td>
+              <% else %>
+                <td><%= button_to t(:edit), {}, :disabled => true %></td>
+                <td><%= button_to t(:delete), delete_user_path(x), method: :delete %></td>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="hardrightsidebar"><%= button_to t(:home), root_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;"%></div>
+</div>
+

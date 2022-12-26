@@ -1,0 +1,51 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :cpus %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div style="float: left;">
+		<table class="hardwaretable">
+		  <thead>
+		    <tr>
+		      	<th><%= t :manufact %></th>
+		      	<th><%= t :socket %></th>
+		      	<th><%= t :model %></th>
+				<th><%= t :core_num %></th>
+				<th><%= t :tdp %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @cpus.each do |x| %>
+		      <tr>
+		          <td><%= x.manufact %></td>
+		          <td><%= x.socket %></td>
+		          <td><%= x.model %></td>
+		          <td><%= x.core_num %></td>
+		          <td><%= x.tdp %></td>
+		          <td><%= x.price %></td>
+		          <td><%= button_to t(:delete), delete_cpu_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="creationform">
+		<h1 class="formheader"><%= t :add_cpu %></h1>
+		<%= form_with do |form| %>
+			<%= form.label t(:manufact), :class => "formlabel" %></br>
+			<%= form.text_field :manufact, :class => "forminput" %></br>
+			<%= form.label t(:socket), :class => "formlabel" %></br>
+			<%= form.text_field :socket, :class => "forminput" %></br>
+			<%= form.label t(:model), :class => "formlabel" %></br>
+			<%= form.text_field :model, :class => "forminput" %></br>
+			<%= form.label t(:core_num), :class => "formlabel" %></br>
+			<%= form.text_field :core_num, :class => "forminput" %></br>
+			<%= form.label t(:tdp), :class => "formlabel" %></br>
+			<%= form.text_field :tdp, :class => "forminput" %></br>
+			<%= form.label t(:price), :class => "formlabel" %></br>
+			<%= form.text_field :price, :class => "forminput" %></br>
+			<%= form.submit t(:add), :class => "formsubmit" %></br>
+		<% end %>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:back), manip_hardware_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>

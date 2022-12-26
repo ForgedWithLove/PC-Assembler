@@ -1,0 +1,16 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :man_hard %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div class="hardform">
+		<div style="float:top;"><%= button_to t(:manage_cpu), cpu_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_gpu), gpu_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_mb), motherboard_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_mem), memory_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_psu), psu_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_disk), disk_mod_path, :class => "hardbutton", method: :get %></div>
+		<div style="float:top;"><%= button_to t(:manage_cool), cooler_mod_path, :class => "hardbutton", method: :get %></div>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:home), root_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>
+
+

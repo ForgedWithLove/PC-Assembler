@@ -1,2 +1,39 @@
-<h1>Pages#welcome</h1>
-<p>Find me in app/views/pages/welcome.html.erb</p>
+<div class="content">
+	<header>
+	<% if current_user %>
+		<% if current_user.admin %>
+			<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= t :admin %></div>
+		<% else %>
+			<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= current_user.email %></div>
+		<% end %>
+		<img src="HeaderIcon.png" style="position: absolute; left: 750px;">
+		<div style="position: absolute; top: 48px; left: 1550px;">
+			<% if I18n.locale == :ru %>
+				<%= button_to "Eng", eng_path, method: :patch, :class => "localebutton" %>
+				<%= button_to "Ru", {}, :disabled => true, :class => "localebutton" %>
+			<% else %>
+				<%= button_to "Eng", {}, :disabled => true, :class => "localebutton" %>
+				<%= button_to "Ru", ru_path, method: :patch, :class => "localebutton" %>
+			<% end %>
+		</div>
+		<div style="text-align: right; margin-right: 50px; padding-top: 40px; float: right;"><%= button_to t(:log_out), destroy_user_session_path, data: { turbo: false }, method: :delete, :id=>"signoutbut" %></div>
+	<% end %>
+</header>
+<div class="rightsidebar">
+	<%= button_to t(:conf), configurator_path, method: :get, :class => "rightsidebarlinks" %></br>
+	<%= button_to t(:my_comp), observation_path, method: :get, :class => "rightsidebarlinks" %></br>
+	<% if current_user.admin %>
+		<%= button_to t(:man_users), foradmin_manip_users_path, method: :get, :class => "adminlinks" %></br>
+		<%= button_to t(:man_hard), manip_hardware_path, method: :get, :class => "adminlinks" %></br>
+	<% else %>
+		<%= button_to t(:manage_account), edit_user_registration_path(current_user.id), method: :get, :class => "rightsidebarlinks" %>
+	<% end %>
+</div>
+<div class="leftsidebar"></div>
+<div id="educ_tab">Текст</div>
+<%= form_tag("/pages/info_first", :method => "get", remote: true, id: 'ref_next') do %>
+	<%= submit_tag("Обновить") %>
+<% end %>
+</div>
+
+

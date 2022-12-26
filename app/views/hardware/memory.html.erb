@@ -1,0 +1,39 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :memories %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div style="float: left;">
+		<table class="hardwaretable">
+		  <thead>
+		    <tr>
+		      	<th><%= t :vol_one %></th>
+		      	<th><%= t :freq %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @memories.each do |x| %>
+		      <tr>
+		          <td><%= x.volume_one %></td>
+		          <td><%= x.max_freq %></td>
+		          <td><%= x.price %></td>
+		          <td><%= button_to t(:delete), delete_memory_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="creationform">
+		<h1 class="formheader"><%= t :add_mem %></h1>
+		<%= form_with do |form| %>
+			<%= form.label t(:vol_one), :class => "formlabel" %></br>
+			<%= form.text_field :volume_one, :class => "forminput" %></br>
+			<%= form.label t(:freq), :class => "formlabel" %></br>
+			<%= form.text_field :max_freq, :class => "forminput" %></br>
+			<%= form.label t(:price), :class => "formlabel" %></br>
+			<%= form.text_field :price, :class => "forminput" %></br>
+			<%= form.submit t(:add), :class => "formsubmit" %></br>
+		<% end %>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:back), manip_hardware_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>

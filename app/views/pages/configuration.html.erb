@@ -1,2 +1,73 @@
-<h1>Pages#configuration</h1>
-<p>Find me in app/views/pages/configuration.html.erb</p>
+<div class="content">
+	<header>
+		<% if current_user %>
+			<% if current_user.admin %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= t :admin %></div>
+			<% else %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= current_user.email %></div>
+			<% end %>
+			<img src="/HeaderIcon.png" style="position: absolute; left: 750px;">
+			<div style="text-align: right; margin-right: 50px; padding-top: 40px; float: right;"><%= button_to t(:log_out), destroy_user_session_path, data: { turbo: false }, method: :delete, :id=>"signoutbut" %></div>
+		<% end %>
+	</header>
+	<div class="rightsidebar">
+		<%= button_to t(:home), root_path, method: :get, :class => "rightsidebarlinks" %></br>
+		<%= button_to t(:my_comp), observation_path, method: :get, :class => "rightsidebarlinks" %></br>
+	</div>
+	<div class="leftsidebar"></div>
+	<%= form_with do |form| %>
+	<div style="width: 360px; height: 130px; float: left; margin-top: 20px; margin-left: 25px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/cpu_icon.png" style="float: left; margin-top: 10px; margin-left: 40px;">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :cpu %></p>
+		</div>
+		<%= select_tag(:cpu, options_for_select(cpu_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 485px; height: 130px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/gpu_icon.png" style="float: left; margin-top: 10px; margin-left: 40px;">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px"><%= t :gpu %></p>
+		</div>
+		<%= select_tag(:gpu, options_for_select(gpu_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 470px; height: 130px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/mb_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :motherboard %></p>
+		</div>
+		<%= select_tag(:motherboard, options_for_select(motherboard_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 360px; height: 130px; float: left; margin-top: 20px; margin-left: 25px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/psu_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :psu %></p>
+		</div>
+		<%= select_tag(:psu, options_for_select(psu_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 220px; height: 130px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/disk_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :disk %></p>
+		</div>
+		<%= select_tag(:disk, options_for_select(disk_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 235px; height: 130px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/cooler_icon.png" style="float: left; margin-left: 35px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :cooler %></p>
+		</div>
+		<%= select_tag(:cooler, options_for_select(cooler_array), {include_blank: true, :class => "select"}) %>
+	</div>
+	<div style="width: 470px; height: 130px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/mem_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :memory %></p>
+		</div>
+		<%= select_tag(:memory, options_for_select(memory_array), {include_blank: true, :class => "mem_select", :style => "margin-left: 5px;"}) %>
+		<%= number_field_tag :memory_number, '2', in: 1..8, class: "num_input" %>
+	</div>
+	<%= form.submit t(:build), :class => "build" %>
+	<% end %>
+	<p class="notice" style="float: left; margin-left: 30px; color: red; font-size: 30px;"><%= notice %></p>
+	<img src="/examp.png" style="position: absolute; left: 680px; top: 520px; height: 450px; width: auto;" >
+</div>

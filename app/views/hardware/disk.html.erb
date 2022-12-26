@@ -1,0 +1,39 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :disks %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div style="float: left;">
+		<table class="hardwaretable">
+		  <thead>
+		    <tr>
+		      	<th><%= t :store_type %></th>
+		      	<th><%= t :volume %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @disks.each do |x| %>
+		      <tr>
+		          <td><%= x.storage_type %></td>
+		          <td><%= x.volume %></td>
+		          <td><%= x.price %></td>
+		          <td><%= button_to t(:delete), delete_disk_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="creationform">
+		<h1 class="formheader"><%= t :add_disk %></h1>
+		<%= form_with do |form| %>
+			<%= form.label t(:store_type), :class => "formlabel" %></br>
+			<%= form.text_field :storage_type, :class => "forminput" %></br>
+			<%= form.label t(:volume), :class => "formlabel" %></br>
+			<%= form.text_field :volume, :class => "forminput" %></br>
+			<%= form.label t(:price), :class => "formlabel" %></br>
+			<%= form.text_field :price, :class => "forminput" %></br>
+			<%= form.submit t(:add), :class => "formsubmit" %></br>
+		<% end %>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:back), manip_hardware_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>
