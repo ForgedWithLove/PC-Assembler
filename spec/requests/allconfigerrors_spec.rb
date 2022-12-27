@@ -47,6 +47,8 @@ describe 'Allconfigerrors' do
     dropdown.find_element(:xpath, "//option[. = '32 GB, 5600 MHz']").click
     @driver.find_element(:css, '#memory > option:nth-child(2)').click
     @driver.find_element(:name, 'commit').click
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Incompatible sockets.")
     @driver.find_element(:id, 'cpu').click
     dropdown = @driver.find_element(:id, 'cpu')
     dropdown.find_element(:xpath, "//option[. = 'Intel Core i9-13900K (LGA 1700, 253 W)']").click
@@ -74,44 +76,8 @@ describe 'Allconfigerrors' do
     dropdown.find_element(:xpath, "//option[. = '32 GB, 5600 MHz']").click
     @driver.find_element(:css, '#memory > option:nth-child(2)').click
     @driver.find_element(:name, 'commit').click
-    @driver.find_element(:id, 'cpu').click
-    dropdown = @driver.find_element(:id, 'cpu')
-    dropdown.find_element(:xpath, "//option[. = 'Intel Core i9-13900K (LGA 1700, 253 W)']").click
-    @driver.find_element(:css, '#cpu > option:nth-child(2)').click
-    @driver.find_element(:id, 'gpu').click
-    dropdown = @driver.find_element(:id, 'gpu')
-    dropdown.find_element(:xpath, "//option[. = 'NVIDIA GeForce RTX 3070 Ti']").click
-    @driver.find_element(:css, '#gpu > option:nth-child(4)').click
-    @driver.find_element(:id, 'motherboard').click
-    dropdown = @driver.find_element(:id, 'motherboard')
-    dropdown.find_element(:xpath, "//option[. = 'ASUS ROG STRIX B560-E GAMING WIFI (LGA 1200, 4 slots)']").click
-    @driver.find_element(:css, '#motherboard > option:nth-child(11)').click
-    @driver.find_element(:id, 'cpu').click
-    dropdown = @driver.find_element(:id, 'cpu')
-    dropdown.find_element(:xpath, "//option[. = 'Intel Core i9-11900K (LGA 1200, 125 W)']").click
-    @driver.find_element(:css, '#cpu > option:nth-child(14)').click
-    dropdown = @driver.find_element(:id, 'psu')
-    dropdown.find_element(:xpath, "//option[. = '850 W, 80 PLUS Platinum']").click
-    @driver.find_element(:css, '#psu > option:nth-child(7)').click
-    @driver.find_element(:id, 'disk').click
-    dropdown = @driver.find_element(:id, 'disk')
-    dropdown.find_element(:xpath, "//option[. = 'SSD, 1 TB']").click
-    @driver.find_element(:css, '#disk > option:nth-child(7)').click
-    @driver.find_element(:id, 'cooler').click
-    dropdown = @driver.find_element(:id, 'cooler')
-    dropdown.find_element(:xpath, "//option[. = 'LGA 1200, 250 W']").click
-    @driver.find_element(:css, '#cooler > option:nth-child(6)').click
-    @driver.find_element(:id, 'memory').click
-    dropdown = @driver.find_element(:id, 'memory')
-    dropdown.find_element(:xpath, "//option[. = '16 GB, 3600 MHz']").click
-    @driver.find_element(:css, '#memory > option:nth-child(8)').click
-    @driver.find_element(:id, 'memory_number').send_keys('3')
-    @driver.find_element(:id, 'memory_number').click
-    @driver.find_element(:id, 'memory_number').send_keys('4')
-    @driver.find_element(:id, 'memory_number').click
-    @driver.find_element(:id, 'memory_number').send_keys('5')
-    @driver.find_element(:id, 'memory_number').click
-    @driver.find_element(:name, 'commit').click
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Cooler has too low TDP.")
     @driver.find_element(:id, 'cpu').click
     dropdown = @driver.find_element(:id, 'cpu')
     dropdown.find_element(:xpath, "//option[. = 'Intel Core i7-12700K (LGA 1700, 190 W)']").click
@@ -129,6 +95,8 @@ describe 'Allconfigerrors' do
     dropdown.find_element(:xpath, "//option[. = 'LGA 1700, 250 W']").click
     @driver.find_element(:css, '#cooler > option:nth-child(2)').click
     @driver.find_element(:name, 'commit').click
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Please, fill all fields.")
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
     @driver.find_element(:css, '.localebutton:nth-child(2)').click
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
@@ -161,6 +129,8 @@ describe 'Allconfigerrors' do
     dropdown.find_element(:xpath, "//option[. = '32 ГБ, 5600 МГц']").click
     @driver.find_element(:css, '#memory > option:nth-child(2)').click
     @driver.find_element(:name, 'commit').click
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Несовместимые сокеты.")
     @driver.find_element(:id, 'cpu').click
     dropdown = @driver.find_element(:id, 'cpu')
     dropdown.find_element(:xpath, "//option[. = 'Intel Core i9-13900K (LGA 1700, 253 Вт)']").click
@@ -190,39 +160,11 @@ describe 'Allconfigerrors' do
     dropdown.find_element(:xpath, "//option[. = '16 ГБ, 6400 МГц']").click
     @driver.find_element(:css, '#memory > option:nth-child(7)').click
     @driver.find_element(:name, 'commit').click
-    @driver.find_element(:id, 'cpu').click
-    dropdown = @driver.find_element(:id, 'cpu')
-    dropdown.find_element(:xpath, "//option[. = 'Intel Core i9-13900K (LGA 1700, 253 Вт)']").click
-    @driver.find_element(:css, '#cpu > option:nth-child(2)').click
-    @driver.find_element(:css, 'form > div:nth-child(3)').click
-    @driver.find_element(:id, 'gpu').click
-    dropdown = @driver.find_element(:id, 'gpu')
-    dropdown.find_element(:xpath, "//option[. = 'NVIDIA GeForce RTX 4080']").click
-    @driver.find_element(:css, '#gpu > option:nth-child(2)').click
-    @driver.find_element(:id, 'motherboard').click
-    dropdown = @driver.find_element(:id, 'motherboard')
-    dropdown.find_element(:xpath, "//option[. = 'GIGABYTE Z690 AORUS XTREME (LGA 1700, 4 слота)']").click
-    @driver.find_element(:css, '#motherboard > option:nth-child(3)').click
-    @driver.find_element(:id, 'cooler').click
-    dropdown = @driver.find_element(:id, 'cooler')
-    dropdown.find_element(:xpath, "//option[. = 'LGA 1700, 250 Вт']").click
-    @driver.find_element(:css, '#cooler > option:nth-child(2)').click
-    @driver.find_element(:id, 'disk').click
-    dropdown = @driver.find_element(:id, 'disk')
-    dropdown.find_element(:xpath, "//option[. = 'SSD, 2 ТБ']").click
-    @driver.find_element(:css, '#disk > option:nth-child(6)').click
-    @driver.find_element(:id, 'psu').click
-    dropdown = @driver.find_element(:id, 'psu')
-    dropdown.find_element(:xpath, "//option[. = '850 Вт, 80 PLUS Platinum']").click
-    @driver.find_element(:css, '#psu > option:nth-child(7)').click
-    @driver.find_element(:id, 'memory').click
-    dropdown = @driver.find_element(:id, 'memory')
-    dropdown.find_element(:xpath, "//option[. = '16 ГБ, 3200 МГц']").click
-    @driver.find_element(:css, '#memory > option:nth-child(9)').click
-    @driver.find_element(:id, 'memory_number').click
-    @driver.find_element(:id, 'memory_number').send_keys('5')
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Кулер имеет слишком низкую мощность.")
     @driver.find_element(:name, 'commit').click
-    @driver.find_element(:name, 'commit').click
+    error = @driver.find_element(:css, '.notice').text
+    expect(error).to eq("Пожалуйста, заполните все поля.")
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
     @driver.find_element(:id, 'signoutbut').click
   end

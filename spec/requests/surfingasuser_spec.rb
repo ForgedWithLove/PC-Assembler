@@ -47,6 +47,10 @@ describe 'SurfingAsUser' do
     dropdown.find_element(:xpath, "//option[. = '32 GB, 2400 MHz']").click
     @driver.find_element(:css, '#memory > option:nth-child(6)').click
     @driver.find_element(:name, 'commit').click
+    cpu = @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(1)').text
+    expect(cpu).to eq("Intel Core i7-13700K")
+    gpu = @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(2)').text
+    expect(gpu).to eq("NVIDIA GeForce RTX 3070")
     @driver.find_element(:css, 'td:nth-child(10) button').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'td:nth-child(11) button').click
@@ -83,6 +87,10 @@ describe 'SurfingAsUser' do
     @driver.find_element(:id, 'memory_number').click
     @driver.find_element(:css, '.content').click
     @driver.find_element(:name, 'commit').click
+    cpu = @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(1)').text
+    expect(cpu).to eq("Intel Core i7-12700K")
+    gpu = @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(2)').text
+    expect(gpu).to eq("NVIDIA GeForce RTX 3070")
     @driver.find_element(:css, 'td:nth-child(10) button').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'td:nth-child(11) button').click

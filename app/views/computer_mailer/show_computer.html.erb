@@ -7,19 +7,19 @@
     <table>
 		  <thead>
 		    <tr>
-		      	<th><%= t :cpu %></th>
-		      	<th><%= t :gpu %></th>
-		      	<th><%= t :motherboard %></th>
-				<th><%= t :memory %></th>
-				<th><%= t :mod_num %></th>
-				<th><%= t :psu %></th>
-				<th><%= t :disk %></th>
-				<th><%= t :cooler %></th>
-				<th><%= t :price %></th>
+		      <th><%= t :cpu %></th>
+		      <th><%= t :gpu %></th>
+		      <th><%= t :motherboard %></th>
+					<th><%= t :memory %></th>
+					<th><%= t :mod_num %></th>
+					<th><%= t :psu %></th>
+					<th><%= t :disk %></th>
+					<th><%= t :cooler %></th>
+					<th><%= t :price %></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <% Computer.where(User_id: current_user.id).each do |x| %>
+		    <% Computer.where(User_id: @user.id).each do |x| %>
 		    <% cur_cpu = Cpu.find_by_id(x.cpu_id) %>
 		    <% cur_gpu = Videocard.find_by_id(x.videocard_id) %>
 		    <% cur_mb = Motherboard.find_by_id(x.motherboard_id) %>

@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   patch "pages/ru", to: "pages#ru", as: 'ru'
   patch "pages/eng", to: "pages#en", as: 'eng'
   get "pages/send_computers", to: "pages#send_computers", as: 'comp_mail'
-  get "pages/info_first", to: "pages#info_first", as: 'info'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

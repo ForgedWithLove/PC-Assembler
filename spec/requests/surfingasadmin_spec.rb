@@ -18,6 +18,8 @@ describe 'SurfingAsAdmin' do
     @driver.find_element(:id, 'user_password').send_keys('NiKELmA%195!')
     @driver.find_element(:id, 'user_password').send_keys(:enter)
     sleep 1
+    user_email = @driver.find_element(:css, '.regular_text').text
+    expect(user_email).to eq("Current user: Admin")
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(3) > .rightsidebarlinks').click
     @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(10) button').click
@@ -31,18 +33,32 @@ describe 'SurfingAsAdmin' do
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(7) > .adminlinks').click
     @driver.find_element(:css, 'div:nth-child(1) > .button_to > .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("CPUs")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(2) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Videocards")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(3) > .button_to > .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Motherboards")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(4) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("RAM modules")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(5) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("PSUs")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(6) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Disks")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(7) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Coolers")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.localebutton:nth-child(2)').click
@@ -59,16 +75,30 @@ describe 'SurfingAsAdmin' do
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(7) > .adminlinks').click
     @driver.find_element(:css, 'div:nth-child(1) > .button_to > .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Процессоры")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(2) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Видеокарты")
+    @driver.find_element(:css, '.rightsidebarlinks').click
+    @driver.find_element(:css, 'div:nth-child(3) .hardbutton').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(4) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Модули ОП")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(5) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Блоки питания")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(6) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Диски")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, 'div:nth-child(7) .hardbutton').click
+    header = @driver.find_element(:css, '.hardwareheader > h1').text
+    expect(header).to eq("Кулеры")
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:id, 'signoutbut').click

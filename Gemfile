@@ -72,3 +72,4 @@ gem 'bcrypt'
 gem "jquery", "~> 0.0.1"
 
 gem "hotwire-rails", "~> 0.1.3"
+

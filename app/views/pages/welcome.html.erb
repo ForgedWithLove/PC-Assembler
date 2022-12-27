@@ -30,10 +30,53 @@
 	<% end %>
 </div>
 <div class="leftsidebar"></div>
-<div id="educ_tab">Текст</div>
-<%= form_tag("/pages/info_first", :method => "get", remote: true, id: 'ref_next') do %>
-	<%= submit_tag("Обновить") %>
-<% end %>
+<div style="width: 740px; height: 400px; margin-left: 600px; margin-top: 50px;">
+	<div style="border: 1px solid white; border-radius: 6px; background-color: rgba(365, 365, 365, 0.4); width: 400px; height: 296px; float: left; font-size: 18px;"><p id="educ_tab" style="margin-left: 10px; margin-right: 10px; font-family: ‘Signika’, sans-serif;">Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них.</p></div>
+	<div style="width: 180px;float: left; border: 1px solid white; border-radius: 6px;">
+		<button onclick="welcome()" class="welcome_but"><%= t(:welcome) %>!</button>
+		<button onclick="cpu()" class="welcome_but"><%= t(:cpu) %></button>
+		<button onclick="gpu()" class="welcome_but"><%= t(:gpu) %></button>
+		<button onclick="motherboard()" class="welcome_but"><%= t(:motherboard) %></button>
+		<button onclick="memory()" class="welcome_but"><%= t(:memory) %></button>
+		<button onclick="psu()" class="welcome_but"><%= t(:psu) %></button>
+		<button onclick="disk()" class="welcome_but"><%= t(:disk) %></button>
+		<button onclick="cooler()" class="welcome_but"><%= t(:cooler) %></button>
+	</div>
+</div>
+<%= button_to "Test", comp_mail_path, method: :get %>
 </div>
 
-
+<script>
+	function welcome(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них."
+	}
+	function cpu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Процессор является сердцем компьютера. Он имеет множество параметров, среди которых основные: сокет, определяющий вид соединения с материнской платой, и тепловыделение, характеризующее количество тепла, которое выделяет процессор при нагрузке."
+	}
+	function gpu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Видеокарта - второе сердце современного компьютера, значительно повышающее его вычислительную мощность. Важнейшим параметром видеокарты является объём: чем он выше, тем производительнее компьютер, однако важным является и поколение видеокарты."
+	}
+	function motherboard(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Материнская плата - 'скелет' компьютера, который позволяет соединить все комплектующие между собой. Среди параметров стоит отметить чипсет, который определяет наличие некоторых функций."
+	}
+	function memory(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Оперативная память - память, напрямую связанная с процессором, отчего чтение с неё данных происходит почти мгновенно. При выборе оперативной памяти рядовому пользователю стоит обратить внимание на объём и частоту. Объём характеризует количество данных, одновременно хранящихся в модуле, частота показывает скорость выполнения команд."
+	}
+	function psu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Блок питания обеспечивает электроэнергией все компоненты компьютера. Основными характеристиками можно назвать мощность, которая показывает, насколько требовательные комлектующие вы можете использовать в сборке, и сертификат, определяющий надежность БП."
+	}
+	function disk(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Диск - запоминающее устройство, хранящее информацию в отсутствии питания (в противоположность оперативной памяти). Существуют разные диски, среди которых жесткие диски (HDD) - ЗУ, хранящие большой объём информации, но имеющие относительно низкую скорость чтения, и твердотельные накопители (SSD) - ЗУ, позволяющие хранить значительно меньший объём данных, чем HDD, но превосходящие их по скорости чтения. "
+	}
+	function cooler(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Кулер - элемент, позволяющий отводить тепло от процессора для поддержания его рабочей температуры. Мощность - главный параметр кулера - показывает, сколько тепла он может отвести от процессора."
+	}
+</script>

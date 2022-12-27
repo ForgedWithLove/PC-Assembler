@@ -74,7 +74,7 @@ class PagesController < ApplicationController
   end
 
   def send_computers
-    ComputerMailer.show_computer.deliver
+    ComputerMailer.show_computer(current_user).deliver
   end
 
   def info_first

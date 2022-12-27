@@ -12,6 +12,7 @@ describe 'CreateDeleteUser' do
   it 'createDeleteUser' do
     @driver.get('http://localhost:3000/users/sign_in')
     @driver.manage.window.resize_to(1920,1004)
+    sleep 1
     @driver.find_element(:link_text, 'Sign up').click
     @driver.find_element(:id, 'user_email').send_keys('test@mail.ru')
     @driver.find_element(:id, 'user_password').click
@@ -19,6 +20,9 @@ describe 'CreateDeleteUser' do
     @driver.find_element(:id, 'user_password_confirmation').click
     @driver.find_element(:id, 'user_password_confirmation').send_keys('1234567')
     @driver.find_element(:name, 'commit').click
+    sleep 1
+    user_email = @driver.find_element(:css, '.regular_text').text
+    expect(user_email).to eq("Current user: test@mail.ru")
     @driver.find_element(:css, '.button_to:nth-child(5) > .rightsidebarlinks').click
     @driver.find_element(:css, 'button').click
   end
