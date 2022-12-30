@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Контроллер для управления комплектующими в БД
 class HardwareController < ApplicationController
   def cpu
     @cpus = Cpu.all
@@ -31,11 +34,15 @@ class HardwareController < ApplicationController
     params.permit(:manufact, :socket, :model, :core_num, :tdp, :price)
   end
 
+  def cpu_blank_check
+    params[:manufact].blank? || params[:socket].blank? || params[:model].blank?
+  end
+
   def create_cpu
-    unless params[:manufact].blank? || params[:socket].blank? || params[:model].blank? || params[:core_num].to_i < 1 || params[:tdp].to_i < 1 || params[:price].to_i < 1
-      Cpu.create(cpu_params)
-      redirect_to cpu_mod_path
-    end
+    return if cpu_blank_check || params[:core_num].to_i < 1 || params[:tdp].to_i < 1 || params[:price].to_i < 1
+
+    Cpu.create(cpu_params)
+    redirect_to cpu_mod_path
   end
 
   def delete_cpu
@@ -49,10 +56,10 @@ class HardwareController < ApplicationController
   end
 
   def create_gpu
-    unless params[:manufact].blank? || params[:model].blank? || params[:gen].to_i < 1 || params[:volume].to_i < 1 || params[:price].to_i < 1
-      Videocard.create(gpu_params)
-      redirect_to gpu_mod_path
-    end
+    return if params[:manufact].blank? || params[:model].blank? || params[:gen].to_i < 1 || params[:volume].to_i < 1 || params[:price].to_i < 1
+
+    Videocard.create(gpu_params)
+    redirect_to gpu_mod_path
   end
 
   def delete_gpu
@@ -66,10 +73,10 @@ class HardwareController < ApplicationController
   end
 
   def create_motherboard
-    unless params[:name].blank? || params[:socket].blank? || params[:chipset].blank? || params[:price].to_i < 1 || params[:memory_slots].to_i < 1
-      Motherboard.create(motherboard_params)
-      redirect_to motherboard_mod_path
-    end
+    return if params[:name].blank? || params[:socket].blank? || params[:chipset].blank? || params[:price].to_i < 1 || params[:memory_slots].to_i < 1
+
+    Motherboard.create(motherboard_params)
+    redirect_to motherboard_mod_path
   end
 
   def delete_motherboard
@@ -83,10 +90,10 @@ class HardwareController < ApplicationController
   end
 
   def create_memory
-    unless params[:volume_one].to_i < 1 || params[:max_freq].to_i < 1 || params[:price].to_i < 1
-      Memory.create(memory_params)
-      redirect_to memory_mod_path
-    end
+    return if params[:volume_one].to_i < 1 || params[:max_freq].to_i < 1 || params[:price].to_i < 1
+
+    Memory.create(memory_params)
+    redirect_to memory_mod_path
   end
 
   def delete_memory
@@ -100,10 +107,10 @@ class HardwareController < ApplicationController
   end
 
   def create_psu
-    unless params[:wattage].to_i < 1 || params[:certificate].blank? || params[:price].to_i < 1
-      Psu.create(psu_params)
-      redirect_to psu_mod_path
-    end
+    return if params[:wattage].to_i < 1 || params[:certificate].blank? || params[:price].to_i < 1
+
+    Psu.create(psu_params)
+    redirect_to psu_mod_path
   end
 
   def delete_psu
@@ -117,10 +124,10 @@ class HardwareController < ApplicationController
   end
 
   def create_disk
-    unless params[:storage_type].blank? || params[:volume].to_i < 1 || params[:price].to_i < 1
-      Disk.create(disk_params)
-      redirect_to disk_mod_path
-    end
+    return if params[:storage_type].blank? || params[:volume].to_i < 1 || params[:price].to_i < 1
+
+    Disk.create(disk_params)
+    redirect_to disk_mod_path
   end
 
   def delete_disk
@@ -134,10 +141,10 @@ class HardwareController < ApplicationController
   end
 
   def create_cooler
-    unless params[:socket].blank? || params[:tdp].to_i < 1 || params[:price].to_i < 1
-      Cooler.create(cooler_params)
-      redirect_to cooler_mod_path
-    end
+    return if params[:socket].blank? || params[:tdp].to_i < 1 || params[:price].to_i < 1
+
+    Cooler.create(cooler_params)
+    redirect_to cooler_mod_path
   end
 
   def delete_cooler

@@ -120,3 +120,4 @@ en:
   slots_error: "Not enough RAM slots in the motherboard."
   tdp_error: "Cooler has too low TDP."
   manage_account: "Manage account"
+  access_denied: "You have no access rights to computer with this id!"

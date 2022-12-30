@@ -6,7 +6,6 @@
       <thead>
         <tr>
           <th><%= t :email %></th>
-          <th><%= t :encr_pass %></th>
           <th><%= t :admin %></th>
           <th></th>
           <th></th>
@@ -16,7 +15,6 @@
         <% @tab.each do |x| %>
           <tr>
               <td><%= x.email %></td>
-              <td><%= x.encrypted_password %></td>
               <td><%= t x.admin.to_s %></td>
               
               <% if x.admin %>

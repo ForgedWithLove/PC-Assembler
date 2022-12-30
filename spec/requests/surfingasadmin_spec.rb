@@ -29,7 +29,7 @@ describe 'SurfingAsAdmin' do
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(5) > .adminlinks').click
     @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(4) button').click
-    @driver.find_element(:link_text, 'Back').click
+    sleep 1
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(7) > .adminlinks').click
     @driver.find_element(:css, 'div:nth-child(1) > .button_to > .hardbutton').click
@@ -71,7 +71,6 @@ describe 'SurfingAsAdmin' do
     @driver.find_element(:css, '.button_to:nth-child(1) > .rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(5) > .adminlinks').click
     @driver.find_element(:css, 'tr:nth-child(1) > td:nth-child(4) button').click
-    @driver.find_element(:link_text, 'Назад').click
     @driver.find_element(:css, '.rightsidebarlinks').click
     @driver.find_element(:css, '.button_to:nth-child(7) > .adminlinks').click
     @driver.find_element(:css, 'div:nth-child(1) > .button_to > .hardbutton').click

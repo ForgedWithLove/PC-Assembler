@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post 'hardware/cooler', to: 'hardware#create_cooler', as: 'create_cooler'
   delete "hardware/delete_cooler/:id", to: "hardware#delete_cooler", as: 'delete_cooler'
   post "pages/configuration", to: "pages#creation"
-  post "pages/show_pc/:id", to: "pages#show_pc", as: 'show_pc'
+  get "pages/show_pc/:id", to: "pages#show_pc", as: 'show_pc'
   patch "pages/ru", to: "pages#ru", as: 'ru'
   patch "pages/eng", to: "pages#en", as: 'eng'
   get "pages/send_computers", to: "pages#send_computers", as: 'comp_mail'

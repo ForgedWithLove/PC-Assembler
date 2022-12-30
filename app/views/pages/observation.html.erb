@@ -53,7 +53,7 @@
 			      <td><%= cur_disk.storage_type + ", " + cur_disk.volume.to_s + " " + t(:sign_tb) %></td>
 			      <td><%= cur_cooler.tdp.to_s + " " + t(:sign_w) %></td>
 			      <td><%= x.total_price.to_s + " ₽"  %></td>
-		          <td><%= button_to t(:show), show_pc_path(x) %></td>
+		          <td><%= button_to t(:show), show_pc_path(x), method: :get %></td>
 		          <td><%= button_to t(:delete), delete_pc_path(x), method: :delete %></td>
 		      </tr>
 		    <% end %>
