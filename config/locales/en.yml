@@ -1,0 +1,123 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  cur_user: "Current user"
+  log_out: "Log out"
+  conf: "Configurator"
+  my_comp: "My computers"
+  admin: "Admin"
+  man_users: "Manage users"
+  man_hard: "Manage hardware"
+  cpu: "CPU"
+  gpu: "Videocard"
+  motherboard: "Motherboard"
+  memory: "RAM module"
+  psu: "PSU"
+  disk: "Disk"
+  cooler: "Cooler"
+  cpus: "CPUs"
+  gpus: "Videocards"
+  motherboards: "Motherboards"
+  memories: "RAM modules"
+  psus: "PSUs"
+  disks: "Disks"
+  coolers: "Coolers"
+  build: "Build!"
+  home: "Home"
+  mod_num: "Num. of modules"
+  price: "Price"
+  show: "Show"
+  delete: "Delete"
+  back: "Back"
+  tot_price: "Total price"
+  manufact: "Manufacturer"
+  socket: "Socket"
+  model: "Model"
+  core_num: "Num. of cores"
+  tdp: "TDP"
+  volume: "Volume"
+  name: "Name"
+  chipset: "Chipset"
+  slots_num: "Num. of RAM slots"
+  wattage: "Wattage"
+  certif: "Certificate"
+  store_type: "Storage type"
+  vol_one: "Vol. per module"
+  freq: "Frequency"
+  sign_gb: "GB"
+  sign_tb: "TB"
+  sign_w: "W"
+  sign_mhz: "MHz"
+  slots: "slots"
+  users: "Users"
+  edit: "Edit"
+  email: "Email"
+  encr_pass: "Encrypted password"
+  "true": "Yes"
+  "false": "No"
+  manage_cpu: "Manage CPUs"
+  manage_gpu: "Manage GPUs"
+  manage_mb: "Manage motherboards"
+  manage_mem: "Manage RAM modules"
+  manage_psu: "Manage PSUs"
+  manage_disk: "Manage disks"
+  manage_cool: "Manage coolers"
+  add: "Add"
+  add_cpu: "Add CPU"
+  add_gpu: "Add GPU"
+  add_mb: "Add motherboard"
+  add_mem: "Add RAM module"
+  add_psu: "Add PSU"
+  add_disk: "Add disk"
+  add_cooler: "Add cooler"
+  gen: "Generation"
+  sad_notice: "You have not created any PC at the moment :("
+  edit_user: "Edit user data"
+  pass: "Password"
+  pass_confirm: "Password confirmation"
+  cur_pass: "Current password"
+  update: "Update"
+  cancel_user: "Cancel my account"
+  log_in: "Log in"
+  remem: "Remember me"
+  sign_up: "Sign up"
+  forgot_pass: "Forgot your password?"
+  signing_up: "Sign up"
+  min_char: "6 characters minimum"
+  pass_instruct: "Send me reset password instructions"
+  fill_error: "Please, fill all fields."
+  socket_error: "Incompatible sockets."
+  slots_error: "Not enough RAM slots in the motherboard."
+  tdp_error: "Cooler has too low TDP."
+  manage_account: "Manage account"
+  access_denied: "You have no access rights to computer with this id!"

@@ -1,0 +1,82 @@
+<div class="content">
+	<header>
+	<% if current_user %>
+		<% if current_user.admin %>
+			<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= t :admin %></div>
+		<% else %>
+			<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= current_user.email %></div>
+		<% end %>
+		<img src="HeaderIcon.png" style="position: absolute; left: 750px;">
+		<div style="position: absolute; top: 48px; left: 1550px;">
+			<% if I18n.locale == :ru %>
+				<%= button_to "Eng", eng_path, method: :patch, :class => "localebutton" %>
+				<%= button_to "Ru", {}, :disabled => true, :class => "localebutton" %>
+			<% else %>
+				<%= button_to "Eng", {}, :disabled => true, :class => "localebutton" %>
+				<%= button_to "Ru", ru_path, method: :patch, :class => "localebutton" %>
+			<% end %>
+		</div>
+		<div style="text-align: right; margin-right: 50px; padding-top: 40px; float: right;"><%= button_to t(:log_out), destroy_user_session_path, data: { turbo: false }, method: :delete, :id=>"signoutbut" %></div>
+	<% end %>
+</header>
+<div class="rightsidebar">
+	<%= button_to t(:conf), configurator_path, method: :get, :class => "rightsidebarlinks" %></br>
+	<%= button_to t(:my_comp), observation_path, method: :get, :class => "rightsidebarlinks" %></br>
+	<% if current_user.admin %>
+		<%= button_to t(:man_users), foradmin_manip_users_path, method: :get, :class => "adminlinks" %></br>
+		<%= button_to t(:man_hard), manip_hardware_path, method: :get, :class => "adminlinks" %></br>
+	<% else %>
+		<%= button_to t(:manage_account), edit_user_registration_path(current_user.id), method: :get, :class => "rightsidebarlinks" %>
+	<% end %>
+</div>
+<div class="leftsidebar"></div>
+<div style="width: 740px; height: 400px; margin-left: 600px; margin-top: 50px;">
+	<div style="border: 1px solid white; border-radius: 6px; background-color: rgba(365, 365, 365, 0.4); width: 400px; height: 296px; float: left; font-size: 18px;"><p id="educ_tab" style="margin-left: 10px; margin-right: 10px; font-family: ‘Signika’, sans-serif;">Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них.</p></div>
+	<div style="width: 180px;float: left; border: 1px solid white; border-radius: 6px;">
+		<button onclick="welcome()" class="welcome_but"><%= t(:welcome) %>!</button>
+		<button onclick="cpu()" class="welcome_but"><%= t(:cpu) %></button>
+		<button onclick="gpu()" class="welcome_but"><%= t(:gpu) %></button>
+		<button onclick="motherboard()" class="welcome_but"><%= t(:motherboard) %></button>
+		<button onclick="memory()" class="welcome_but"><%= t(:memory) %></button>
+		<button onclick="psu()" class="welcome_but"><%= t(:psu) %></button>
+		<button onclick="disk()" class="welcome_but"><%= t(:disk) %></button>
+		<button onclick="cooler()" class="welcome_but"><%= t(:cooler) %></button>
+	</div>
+</div>
+<p class="alert" style="font-size: 28px; color: red; margin-left: 600px;"><%= alert %></p>
+</div>
+
+<script>
+	function welcome(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них."
+	}
+	function cpu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Процессор является сердцем компьютера. Он имеет множество параметров, среди которых основные: сокет, определяющий вид соединения с материнской платой, и тепловыделение, характеризующее количество тепла, которое выделяет процессор при нагрузке."
+	}
+	function gpu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Видеокарта - второе сердце современного компьютера, значительно повышающее его вычислительную мощность. Важнейшим параметром видеокарты является объём: чем он выше, тем производительнее компьютер, однако важным является и поколение видеокарты."
+	}
+	function motherboard(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Материнская плата - 'скелет' компьютера, который позволяет соединить все комплектующие между собой. Среди параметров стоит отметить чипсет, который определяет наличие некоторых функций."
+	}
+	function memory(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Оперативная память - память, напрямую связанная с процессором, отчего чтение с неё данных происходит почти мгновенно. При выборе оперативной памяти рядовому пользователю стоит обратить внимание на объём и частоту. Объём характеризует количество данных, одновременно хранящихся в модуле, частота показывает скорость выполнения команд."
+	}
+	function psu(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Блок питания обеспечивает электроэнергией все компоненты компьютера. Основными характеристиками можно назвать мощность, которая показывает, насколько требовательные комлектующие вы можете использовать в сборке, и сертификат, определяющий надежность БП."
+	}
+	function disk(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Диск - запоминающее устройство, хранящее информацию в отсутствии питания (в противоположность оперативной памяти). Существуют разные диски, среди которых жесткие диски (HDD) - ЗУ, хранящие большой объём информации, но имеющие относительно низкую скорость чтения, и твердотельные накопители (SSD) - ЗУ, позволяющие хранить значительно меньший объём данных, чем HDD, но превосходящие их по скорости чтения. "
+	}
+	function cooler(){
+	    text = document.getElementById("educ_tab")
+		text.innerHTML = "Кулер - элемент, позволяющий отводить тепло от процессора для поддержания его рабочей температуры. Мощность - главный параметр кулера - показывает, сколько тепла он может отвести от процессора."
+	}
+</script>

@@ -1,0 +1,63 @@
+<div class="content">
+	<header>
+		<% if current_user %>
+			<% if current_user.admin %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= t :admin %></div>
+			<% else %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= current_user.email %></div>
+			<% end %>
+			<img src="/HeaderIcon.png" style="position: absolute; left: 750px;">
+			<div style="text-align: right; margin-right: 50px; padding-top: 40px; float: right;"><%= button_to t(:log_out), destroy_user_session_path, data: { turbo: false }, method: :delete, :id=>"signoutbut" %></div>
+		<% end %>
+	</header>
+	<div class="rightsidebar">
+		<%= button_to t(:home), root_path, method: :get, :class => "rightsidebarlinks" %></br>
+		<%= button_to t(:conf), configurator_path, method: :get, :class => "rightsidebarlinks" %></br>	
+	</div>
+	<div class="leftsidebar"></div>
+	<% if Computer.where(User_id: current_user.id).count == 0%>
+		<p id="sad"><%= t :sad_notice %></p>
+	<% else %>
+		<table>
+		  <thead>
+		    <tr>
+		      	<th><%= t :cpu %></th>
+		      	<th><%= t :gpu %></th>
+		      	<th><%= t :motherboard %></th>
+				<th><%= t :memory %></th>
+				<th><%= t :mod_num %></th>
+				<th><%= t :psu %></th>
+				<th><%= t :disk %></th>
+				<th><%= t :cooler %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% Computer.where(User_id: current_user.id).each do |x| %>
+		    <% cur_cpu = Cpu.find_by_id(x.cpu_id) %>
+		    <% cur_gpu = Videocard.find_by_id(x.videocard_id) %>
+		    <% cur_mb = Motherboard.find_by_id(x.motherboard_id) %>
+		    <% cur_mem = Memory.find_by_id(x.memory_id) %>
+		    <% cur_psu = Psu.find_by_id(x.psu_id) %>
+		    <% cur_disk = Disk.find_by_id(x.disk_id) %>
+		    <% cur_cooler = Cooler.find_by_id(x.cooler_id) %>
+		      <tr>
+		          <td><%= cur_cpu.manufact + " " + cur_cpu.model %></td>
+		          <td><%= cur_gpu.manufact + " " + cur_gpu.model %></td>
+		          <td><%= cur_mb.name %></td>
+		          <td><%= cur_mem.volume_one.to_s + " " + t(:sign_gb) + ", " + cur_mem.max_freq.to_s + " " + t(:sign_mhz) %></td>
+			      <td><%= x.memory_num %></td>
+			      <td><%= cur_psu.wattage.to_s + " " + t(:sign_w) + ", " + cur_psu.certificate %></td>
+			      <td><%= cur_disk.storage_type + ", " + cur_disk.volume.to_s + " " + t(:sign_tb) %></td>
+			      <td><%= cur_cooler.tdp.to_s + " " + t(:sign_w) %></td>
+			      <td><%= x.total_price.to_s + " ₽"  %></td>
+		          <td><%= button_to t(:show), show_pc_path(x), method: :get %></td>
+		          <td><%= button_to t(:delete), delete_pc_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% end %>
+</div>

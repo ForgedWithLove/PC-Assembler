@@ -1,0 +1,39 @@
+<div style="background-image: url(https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg); height: 996px;">
+	<div class="hardwareheader" ><h1 style="padding-top: 25px; font-size: 40px;"><%= t :coolers %></h1></div>
+	<div class="hardleftsidebar"></div>
+	<div style="float: left;">
+		<table class="hardwaretable">
+		  <thead>
+		    <tr>
+		      	<th><%= t :socket %></th>
+				<th><%= t :tdp %></th>
+				<th><%= t :price %></th>
+		      	<th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @coolers.each do |x| %>
+		      <tr>
+		          <td><%= x.socket %></td>
+		          <td><%= x.tdp %></td>
+		          <td><%= x.price %></td>
+		          <td><%= button_to t(:delete), delete_cooler_path(x), method: :delete %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="creationform">
+		<h1 class="formheader"><%= t :add_cooler %></h1>
+		<%= form_with do |form| %>
+			<%= form.label t(:socket), :class => "formlabel" %></br>
+			<%= form.text_field :socket, :class => "forminput" %></br>
+			<%= form.label t(:wattage), :class => "formlabel" %></br>
+			<%= form.text_field :tdp, :class => "forminput" %></br>
+			<%= form.label t(:price), :class => "formlabel" %></br>
+			<%= form.text_field :price, :class => "forminput" %></br>
+			<%= form.submit t(:add), :class => "formsubmit" %></br>
+		<% end %>
+	</div>
+	<div class="hardrightsidebar"><%= button_to t(:back), manip_hardware_path, method: :get, :class => "rightsidebarlinks", :style => "margin-left: 64px;" %></div>
+</div>

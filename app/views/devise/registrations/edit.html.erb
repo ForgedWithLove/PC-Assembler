@@ -1,0 +1,47 @@
+<div class="content">
+  <header>
+    <img src="/HeaderIcon.png" style="position: absolute; left: 750px;">
+  </header>
+  <div class="rightsidebar"></div>
+  <div class="leftsidebar"></div>
+  <div style="margin-left: 686px; margin-top: 60px; width: 408px; height: 640px; background-color: rgba(365, 365, 365, 0.5); border: 3px solid #263c5b; border-radius: 10px;">
+    <h2 style="margin-top: 20px; text-align: center; font-size: 30px;"><%= t :edit_user %></h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }, html: { method: :put }) do |f| %>
+      <div class="field" style="margin-left: 60px; font-size: 22px;">
+        <%= f.label :email, t(:email) %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field" style="margin-left: 60px; margin-top: 10px; font-size: 22px;">
+        <%= f.label :password, t(:pass) %> (<%= t :min_char %>)<br />
+        <%= f.password_field :password, autocomplete: "new-password", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <div class="field" style="margin-left: 60px; margin-top: 10px; font-size: 22px;">
+        <%= f.label :password_confirmation, t(:pass_confirm) %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <div class="field" style="margin-left: 60px; margin-top: 10px; font-size: 22px;">
+        <%= f.label :current_password, t(:cur_pass) %><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", :style => "height: 30px; width: 80%; font-size: 18px; margin-top: 5px;" %>
+      </div>
+
+      <div class="actions" style="margin-left: 150px;margin-top: 20px; font-size: 22px;">
+        <%= f.submit t(:update), :style => "height: 30px; width: 100px; font-size: 18px;" %>
+      </div>
+    <% end %>
+    <h2 style="margin-top: 40px; text-align: center; font-size: 30px;"><%= t :cancel_user %></h2>
+
+    <div class="actions" style="margin-left: 150px;margin-top: 20px; font-size: 22px;">
+      <%= button_to t(:delete), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :style => "height: 30px; width: 100px; font-size: 18px;" %>
+    </div>
+
+    <div style="margin-left: 60px; font-size: 22px; margin-top: 20px;"><%= link_to t(:back), :back %></div>
+  </div>
+</div>

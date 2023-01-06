@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <table>
+		  <thead>
+		    <tr>
+		      <th><%= t :cpu %></th>
+		      <th><%= t :gpu %></th>
+		      <th><%= t :motherboard %></th>
+					<th><%= t :memory %></th>
+					<th><%= t :mod_num %></th>
+					<th><%= t :psu %></th>
+					<th><%= t :disk %></th>
+					<th><%= t :cooler %></th>
+					<th><%= t :price %></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% Computer.where(User_id: @user.id).each do |x| %>
+		    <% cur_cpu = Cpu.find_by_id(x.cpu_id) %>
+		    <% cur_gpu = Videocard.find_by_id(x.videocard_id) %>
+		    <% cur_mb = Motherboard.find_by_id(x.motherboard_id) %>
+		    <% cur_mem = Memory.find_by_id(x.memory_id) %>
+		    <% cur_psu = Psu.find_by_id(x.psu_id) %>
+		    <% cur_disk = Disk.find_by_id(x.disk_id) %>
+		    <% cur_cooler = Cooler.find_by_id(x.cooler_id) %>
+		      <tr>
+		          <td><%= cur_cpu.manufact + " " + cur_cpu.model %></td>
+		          <td><%= cur_gpu.manufact + " " + cur_gpu.model %></td>
+		          <td><%= cur_mb.name %></td>
+		          <% if locale == "ru" %>
+			          <td><%= cur_mem.volume_one.to_s + " ГБ, " + cur_mem.max_freq.to_s + " МГц" %></td>
+			          <td><%= x.memory_num %></td>
+			          <td><%= cur_psu.wattage.to_s + " Вт, " + cur_psu.certificate %></td>
+			          <td><%= cur_disk.storage_type + ", " + cur_disk.volume.to_s + " ТБ" %></td>
+			          <td><%= cur_cooler.tdp.to_s + " Вт"  %></td>
+			      <% else %>
+			      	  <td><%= cur_mem.volume_one.to_s + " GB, " + cur_mem.max_freq.to_s + " MHz" %></td>
+			          <td><%= x.memory_num %></td>
+			          <td><%= cur_psu.wattage.to_s + " W, " + cur_psu.certificate %></td>
+			          <td><%= cur_disk.storage_type + ", " + cur_disk.volume.to_s + " TB" %></td>
+			          <td><%= cur_cooler.tdp.to_s + " W"  %></td>
+			      <% end %>
+		          <td><%= x.total_price.to_s + " ₽"  %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<div class="content">
+	<header>
+		<% if current_user %>
+			<% if current_user.admin %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= t :admin %></div>
+			<% else %>
+				<div style="margin-left: 50px; padding-top: 50px; font-size: 30px; float: left;" class="regular_text"><%= t :cur_user %>: <%= current_user.email %></div>
+			<% end %>
+			<img src="/HeaderIcon.png" style="position: absolute; left: 750px;">
+			<div style="text-align: right; margin-right: 50px; padding-top: 40px; float: right;"><%= button_to t(:log_out), destroy_user_session_path, data: { turbo: false }, method: :delete, :id=>"signoutbut" %></div>
+		<% end %>
+	</header>
+	<div class="rightsidebar"><%= button_to t(:back), observation_path, method: :get, :class => "rightsidebarlinks" %></br></div>
+	<div class="leftsidebar"></div>
+	<%= form_with do |form| %>
+	<div style="float: left">
+		<div style="width: 340px; height: 395px; float: left; margin-top: 20px; margin-left: 45px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+			<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+				<img src="/cpu_icon.png" style="float: left; margin-top: 10px; margin-left: 40px;">
+				<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :cpu %></p>
+			</div>
+			<table style="border-collapse: collapse; width: 100%; height: 300px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+				<tr>
+					<td><%= t :manufact %>:</td>
+					<td style="text-align: right;"><%= @cpu.manufact %></td>	
+				</tr>
+				<tr>
+					<td><%= t :socket %>:</td>
+					<td style="text-align: right;"><%= @cpu.socket %></td>	
+				</tr>
+				<tr>
+					<td><%= t :model %>:</td>
+					<td style="text-align: right;"><%= @cpu.model %></td>	
+				</tr>
+				<tr>
+					<td><%= t :core_num %>:</td>
+					<td style="text-align: right;"><%=@cpu.core_num %></td>	
+				</tr>
+				<tr>
+					<td><%= t :tdp %>:</td>
+					<td style="text-align: right;"><%= @cpu.tdp %> <%= t :sign_w %></td>	
+				</tr>
+				<tr>
+					<td><%= t :price %>:</td>
+					<td style="text-align: right;"><%= @cpu.price %> ₽</td>	
+				</tr>
+			</table>
+		</div>
+		<div style="width: 485px; height: 295px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+			<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+				<img src="/gpu_icon.png" style="float: left; margin-top: 10px; margin-left: 40px;">
+				<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px"><%= t :gpu %></p>
+			</div>
+			<table style="border-collapse: collapse; width: 100%; height: 200px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+				<tr>
+					<td><%= t :manufact %>:</td>
+					<td style="text-align: right;"><%= @gpu.manufact %></td>	
+				</tr>
+				<tr>
+					<td><%= t :model %>:</td>
+					<td style="text-align: right;"><%= @gpu.model %></td>	
+				</tr>
+				<tr>
+					<td><%= t :volume %>:</td>
+					<td style="text-align: right;"><%= @gpu.volume %> <%= t :sign_gb %></td>	
+				</tr>
+				<tr>
+					<td><%= t :price %>:</td>
+					<td style="text-align: right;"><%= @gpu.price %> ₽</td>	
+				</tr>
+			</table>
+		</div>
+		<div style="width: 470px; height: 345px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+			<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+				<img src="/mb_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+				<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :motherboard %></p>
+			</div>
+			<table style="border-collapse: collapse; width: 100%; height: 250px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+				<tr>
+					<td><%= t :name %>:</td>
+					<td style="text-align: right;"><%= @motherboard.name %></td>	
+				</tr>
+				<tr>
+					<td><%= t :socket %>:</td>
+					<td style="text-align: right;"><%= @motherboard.socket %></td>	
+				</tr>
+				<tr>
+					<td><%= t :chipset %>:</td>
+					<td style="text-align: right;"><%= @motherboard.chipset %></td>	
+				</tr>
+				<tr>
+					<td><%= t :slots_num %>:</td>
+					<td style="text-align: right;"><%=@motherboard.memory_slots %></td>	
+				</tr>
+				<tr>
+					<td><%= t :price %>:</td>
+					<td style="text-align: right;"><%= @motherboard.price %> ₽</td>	
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div style="width: 340px; height: 245px; float: left; margin-top: 20px; margin-left: 45px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/psu_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :psu %></p>
+		</div>
+		<table style="border-collapse: collapse; width: 100%; height: 150px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+			<tr>
+				<td><%= t :wattage %>:</td>
+				<td style="text-align: right;"><%= @psu.wattage %> <%= t :sign_w %></td>	
+			</tr>
+			<tr>
+				<td><%= t :certif %>:</td>
+				<td style="text-align: right;"><%= @psu.certificate %></td>	
+			</tr>
+			<tr>
+				<td><%= t :price %>:</td>
+				<td style="text-align: right;"><%= @psu.price %> ₽</td>	
+			</tr>
+		</table>
+	</div>
+	<div style="width: 220px; height: 245px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/disk_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :disk %></p>
+		</div>
+		<table style="border-collapse: collapse; width: 100%; height: 150px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+			<tr>
+				<td><%= t :store_type %>:</td>
+				<td style="text-align: right;"><%= @disk.storage_type %></td>	
+			</tr>
+			<tr>
+				<td><%= t :volume %>:</td>
+				<td style="text-align: right;"><%= @disk.volume %> <%= t :sign_tb %></td>	
+			</tr>
+			<tr>
+				<td><%= t :price %>:</td>
+				<td style="text-align: right;"><%= @disk.price %> ₽</td>	
+			</tr>
+		</table>
+	</div>
+	<div style="width: 235px; height: 245px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/cooler_icon.png" style="float: left; margin-left: 35px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :cooler %></p>
+		</div>
+		<table style="border-collapse: collapse; width: 100%; height: 150px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+			<tr>
+				<td><%= t :socket %>:</td>
+				<td style="text-align: right;"><%= @cooler.socket %></td>	
+			</tr>
+			<tr>
+				<td><%= t :wattage %>:</td>
+				<td style="text-align: right;"><%= @cooler.tdp %> <%= t :sign_w %></td>	
+			</tr>
+			<tr>
+				<td><%= t :price %>:</td>
+				<td style="text-align: right;"><%= @cooler.price %> ₽</td>	
+			</tr>
+		</table>
+	</div>
+	<div style="width: 470px; height: 295px; float: left; margin-top: 20px; margin-left: 30px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+		<div style="border: 1px solid transparent; margin: auto; width: 100%;">
+			<img src="/mem_icon.png" style="float: left; margin-left: 40px; margin-top: 10px">
+			<p style="float: left; color: white; font-size: 32px; margin-top: 24px; margin-left: 10px;"><%= t :memory %></p>
+		</div>
+		<table style="border-collapse: collapse; width: 100%; height: 200px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+			<tr>
+				<td><%= t :vol_one %>:</td>
+				<td style="text-align: right;"><%= @memory.volume_one %> <%= t :sign_gb %></td>	
+			</tr>
+			<tr>
+				<td><%= t :mod_num %>:</td>
+				<td style="text-align: right;"><%= @comp.memory_num %></td>	
+			</tr>
+			<tr>
+				<td><%= t :freq %>:</td>
+				<td style="text-align: right;"><%= @memory.max_freq %> <%= t :sign_mhz %></td>	
+			</tr>
+			<tr>
+				<td><%= t :price %>:</td>
+				<td style="text-align: right;"><%= @memory.price * @comp.memory_num %> ₽</td>	
+			</tr>
+		</table>
+	</div>
+	<div style="width: 300px; height: 50px; float: right; margin-top: 80px; margin-right: 36px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid white;">
+		<table style="border-collapse: collapse; width: 100%; height: 50px; font-size: 18px; font-family: ‘Signika’, sans-serif; border-radius: 4px;">
+			<tr>
+				<td><%= t :tot_price %>:</td>
+				<td style="text-align: right;"><%= @comp.total_price %> ₽</td>	
+			</tr>
+		</table>
+	</div>
+	<% end %>
+</div>
