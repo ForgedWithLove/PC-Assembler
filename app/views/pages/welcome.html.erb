@@ -31,52 +31,99 @@
 </div>
 <div class="leftsidebar"></div>
 <div style="width: 740px; height: 400px; margin-left: 600px; margin-top: 50px;">
-	<div style="border: 1px solid white; border-radius: 6px; background-color: rgba(365, 365, 365, 0.4); width: 400px; height: 296px; float: left; font-size: 18px;"><p id="educ_tab" style="margin-left: 10px; margin-right: 10px; font-family: ‘Signika’, sans-serif;">Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них.</p></div>
+	<% if I18n.locale == :ru %>
+		<div style="border: 1px solid white; border-radius: 6px; background-color: rgba(365, 365, 365, 0.4); width: 400px; height: 296px; float: left; font-size: 18px;"><p id="educ_tab" style="margin-left: 10px; margin-right: 10px; font-family: ‘Signika’, sans-serif;">Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них.</p></div>
+	<% else %>
+		<div style="border: 1px solid white; border-radius: 6px; background-color: rgba(365, 365, 365, 0.4); width: 400px; height: 296px; float: left; font-size: 18px;"><p id="educ_tab" style="margin-left: 10px; margin-right: 10px; font-family: ‘Signika’, sans-serif;">Welcome! On the PC Assembler website you can create and save computers, as well as view detailed information about any of them at any time.</p></div>
+	<% end %>
 	<div style="width: 180px;float: left; border: 1px solid white; border-radius: 6px;">
-		<button onclick="welcome()" class="welcome_but"><%= t(:welcome) %>!</button>
-		<button onclick="cpu()" class="welcome_but"><%= t(:cpu) %></button>
-		<button onclick="gpu()" class="welcome_but"><%= t(:gpu) %></button>
-		<button onclick="motherboard()" class="welcome_but"><%= t(:motherboard) %></button>
-		<button onclick="memory()" class="welcome_but"><%= t(:memory) %></button>
-		<button onclick="psu()" class="welcome_but"><%= t(:psu) %></button>
-		<button onclick="disk()" class="welcome_but"><%= t(:disk) %></button>
-		<button onclick="cooler()" class="welcome_but"><%= t(:cooler) %></button>
+		<% if I18n.locale == :ru %>
+			<button onclick="welcome(true)" class="welcome_but"><%= t(:welcome) %>!</button>
+			<button onclick="cpu(true)" class="welcome_but"><%= t(:cpu) %></button>
+			<button onclick="gpu(true)" class="welcome_but"><%= t(:gpu) %></button>
+			<button onclick="motherboard(true)" class="welcome_but"><%= t(:motherboard) %></button>
+			<button onclick="memory(true)" class="welcome_but"><%= t(:memory) %></button>
+			<button onclick="psu(true)" class="welcome_but"><%= t(:psu) %></button>
+			<button onclick="disk(true)" class="welcome_but"><%= t(:disk) %></button>
+			<button onclick="cooler(true)" class="welcome_but"><%= t(:cooler) %></button>
+		<% else %>
+			<button onclick="welcome(false)" class="welcome_but"><%= t(:welcome) %>!</button>
+			<button onclick="cpu(false)" class="welcome_but"><%= t(:cpu) %></button>
+			<button onclick="gpu(false)" class="welcome_but"><%= t(:gpu) %></button>
+			<button onclick="motherboard(false)" class="welcome_but"><%= t(:motherboard) %></button>
+			<button onclick="memory(false)" class="welcome_but"><%= t(:memory) %></button>
+			<button onclick="psu(false)" class="welcome_but"><%= t(:psu) %></button>
+			<button onclick="disk(false)" class="welcome_but"><%= t(:disk) %></button>
+			<button onclick="cooler(false)" class="welcome_but"><%= t(:cooler) %></button>
+		<% end %>
 	</div>
 </div>
 <p class="alert" style="font-size: 28px; color: red; margin-left: 600px;"><%= alert %></p>
 </div>
 
 <script>
-	function welcome(){
+	function welcome(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них."
+	    if (key == true) {
+			text.innerHTML = "Добро пожаловать! На сайте PC Assembler вы можете создавать и сохранять сборки компьютеров, а также в любой момент посмотреть подробную информацию о любой из них."; } 
+		else {
+			text.innerHTML = "Welcome! On the PC Assembler website you can create and save computers, as well as view detailed information about any of them at any time.";
+		}
 	}
-	function cpu(){
+	function cpu(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Процессор является сердцем компьютера. Он имеет множество параметров, среди которых основные: сокет, определяющий вид соединения с материнской платой, и тепловыделение, характеризующее количество тепла, которое выделяет процессор при нагрузке."
+	    if (key == true) {
+			text.innerHTML = "Процессор является сердцем компьютера. Он имеет множество параметров, среди которых основные: сокет, определяющий вид соединения с материнской платой, и тепловыделение, характеризующее количество тепла, которое выделяет процессор при нагрузке."; } 
+		else {
+			text.innerHTML = "The CPU is the heart of the computer. It has many parameters, among which the main ones are: socket, which determines the type of connection to the motherboard, and heat dissipation (TDP), which characterizes the amount of heat that the processor emits under load.";
+		}
 	}
-	function gpu(){
+	function gpu(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Видеокарта - второе сердце современного компьютера, значительно повышающее его вычислительную мощность. Важнейшим параметром видеокарты является объём: чем он выше, тем производительнее компьютер, однако важным является и поколение видеокарты."
+	    if (key == true) {
+			text.innerHTML = "Видеокарта - второе сердце современного компьютера, значительно повышающее его вычислительную мощность. Важнейшим параметром видеокарты является объём: чем он выше, тем производительнее компьютер, однако важным является и поколение видеокарты."; } 
+		else {
+			text.innerHTML = "The videocard is the second heart of a modern computer, significantly increasing its computing power. The most important parameter of the videocard is the volume: the higher it is, the more productive the computer is, however, the generation of the video card is also important.";
+		}
 	}
-	function motherboard(){
+	function motherboard(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Материнская плата - 'скелет' компьютера, который позволяет соединить все комплектующие между собой. Среди параметров стоит отметить чипсет, который определяет наличие некоторых функций."
+	    if (key == true) {
+			text.innerHTML = "Материнская плата - 'скелет' компьютера, который позволяет соединить все комплектующие между собой. Среди параметров стоит отметить чипсет, который определяет наличие некоторых функций."; } 
+		else {
+			text.innerHTML = "The motherboard is the 'skeleton' of the computer, which allows you to connect all the components together. Among the parameters, it is worth noting the chipset, which determines the presence of some functions.";
+		}
 	}
-	function memory(){
+	function memory(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Оперативная память - память, напрямую связанная с процессором, отчего чтение с неё данных происходит почти мгновенно. При выборе оперативной памяти рядовому пользователю стоит обратить внимание на объём и частоту. Объём характеризует количество данных, одновременно хранящихся в модуле, частота показывает скорость выполнения команд."
+	    if (key == true) {
+			text.innerHTML = "Оперативная память - память, напрямую связанная с процессором, отчего чтение с неё данных происходит почти мгновенно. При выборе оперативной памяти рядовому пользователю стоит обратить внимание на объём и частоту. Объём характеризует количество данных, одновременно хранящихся в модуле, частота показывает скорость выполнения команд."; } 
+		else {
+			text.innerHTML = "RAM is memory directly connected to the processor, which is why data is read from it almost instantly. When choosing RAM, an ordinary user should pay attention to the volume and frequency. The volume characterizes the amount of data stored in the module at the same time, the frequency shows the speed of command execution.";
+		}
 	}
-	function psu(){
+	function psu(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Блок питания обеспечивает электроэнергией все компоненты компьютера. Основными характеристиками можно назвать мощность, которая показывает, насколько требовательные комлектующие вы можете использовать в сборке, и сертификат, определяющий надежность БП."
+	    if (key == true) {
+			text.innerHTML = "Блок питания обеспечивает электроэнергией все компоненты компьютера. Основными характеристиками можно назвать мощность, которая показывает, насколько требовательные комлектующие вы можете использовать в сборке, и сертификат, определяющий надежность БП."; }
+		else {
+			text.innerHTML = "The power supply provides electricity to all components of the computer. The main characteristics can be called power, which shows how demanding components you can use in the assembly, and a certificate that determines the reliability of the PSU.";
+		}
 	}
-	function disk(){
+	function disk(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Диск - запоминающее устройство, хранящее информацию в отсутствии питания (в противоположность оперативной памяти). Существуют разные диски, среди которых жесткие диски (HDD) - ЗУ, хранящие большой объём информации, но имеющие относительно низкую скорость чтения, и твердотельные накопители (SSD) - ЗУ, позволяющие хранить значительно меньший объём данных, чем HDD, но превосходящие их по скорости чтения. "
+	    if (key == true) {
+			text.innerHTML = "Диск - запоминающее устройство, хранящее информацию в отсутствии питания (в противоположность оперативной памяти). Существуют разные диски, среди которых жесткие диски (HDD) - ЗУ, хранящие большой объём информации, но имеющие относительно низкую скорость чтения, и твердотельные накопители (SSD) - ЗУ, позволяющие хранить значительно меньший объём данных, чем HDD, но превосходящие их по скорости чтения. "; }
+		else {
+			text.innerHTML = "A disk is a storage device that stores information in the absence of power (as opposed to RAM). There are different disks, including hard disk drives (HDD) - memory, storing a large amount of information, but having a relatively low read speed, and solid-state drives (SSD) - memory, allowing you to store a much smaller amount of data than HDD, but surpassing them in read speed.";
+		}
 	}
-	function cooler(){
+	function cooler(key){
 	    text = document.getElementById("educ_tab")
-		text.innerHTML = "Кулер - элемент, позволяющий отводить тепло от процессора для поддержания его рабочей температуры. Мощность - главный параметр кулера - показывает, сколько тепла он может отвести от процессора."
+	    if (key == true) {
+			text.innerHTML = "Кулер - элемент, позволяющий отводить тепло от процессора для поддержания его рабочей температуры. Мощность - главный параметр кулера - показывает, сколько тепла он может отвести от процессора."; }
+		else {
+			text.innerHTML = "Cooler is an element that allows you to remove heat from the processor to maintain its operating temperature. Power - the main parameter of the cooler - shows how much heat it can take away from the processor.";
+		}
 	}
 </script>
